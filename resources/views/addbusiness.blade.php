@@ -8,25 +8,6 @@
     <link rel="stylesheet" href="{{asset('frontend/style.css')}}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <style>
-        .remove-category {
-            cursor: pointer;
-            color: blue;
-            margin-left: 10px;
-        }
-
-        .blur-field {
-            filter: blur(1px);
-            /* Apply blur effect */
-            pointer-events: none;
-            /* Disable interaction */
-            transition: filter 0.3s ease-in-out;
-        }
-
-        .reee {
-            height: 80px;
-        }
-    </style>
 </head>
 
 <body>

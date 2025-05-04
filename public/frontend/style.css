@@ -575,3 +575,22 @@
 .font {
     font-size: 14px;
 }
+/* ///===================add business======================= */
+
+.remove-category {
+    cursor: pointer;
+    color: blue;
+    margin-left: 10px;
+}
+
+.blur-field {
+    filter: blur(1px);
+    /* Apply blur effect */
+    pointer-events: none;
+    /* Disable interaction */
+    transition: filter 0.3s ease-in-out;
+}
+
+.reee {
+    height: 80px;
+}
