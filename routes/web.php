@@ -1,4 +1,5 @@
 <?php
+
 use App\Http\Controllers\FrontendController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,38 +15,38 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/',[FrontendController::class,'home']);
-// Route::get('addbusiness',[FrontendController::class,'business']);
+Route::get('/', [FrontendController::class, 'home'])->name('index');
+Route::get('addbusiness', [FrontendController::class, 'addBusiness'])->name('addbusiness');
 
 
-Route::get('/', function () {
-    return view('index');
-});
+// Route::get('/', function () {
+//     return view('index');
+// });
 
-Route::get('addbusiness', function () {
-    return view('addbusiness');
-});
+// Route::get('addbusiness', function () {
+//     return view('addbusiness');
+// });
 
-Route::get('claim', function () {
-    return view('claim');
-});
+// Route::get('claim', function () {
+//     return view('claim');
+// });
 
-Route::get('contractor', function () {
-    return view('contractor');
-});
+// Route::get('contractor', function () {
+//     return view('contractor');
+// });
 
-Route::get('Explore', function () {
-    return view('Explore');
-});
+// Route::get('Explore', function () {
+//     return view('Explore');
+// });
 
-Route::get('project', function () {
-    return view('project');
-});
+// Route::get('project', function () {
+//     return view('project');
+// });
 
-Route::get('takeout', function () {
-    return view('takeout');
-});
+// Route::get('takeout', function () {
+//     return view('takeout');
+// });
 
-Route::get('review', function () {
-    return view('review');
-});
+// Route::get('review', function () {
+//     return view('review');
+// });

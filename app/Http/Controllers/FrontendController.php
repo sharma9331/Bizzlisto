@@ -7,13 +7,13 @@ use Illuminate\Http\Request;
 
 class FrontendController extends Controller
 {
-    public function contact()
+    public function home()
     {
-        return view('new.contact');
+        return view('index');
     }
 
+    public function addBusiness()
+    {
+        return view('business.addbusiness');
+    }
 }
-
-
-    
-
