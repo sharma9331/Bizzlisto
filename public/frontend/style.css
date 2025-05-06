@@ -5,20 +5,12 @@
     background-color: #000;
 }
 
+.mww{
+   padding: 2px 14px;
+}
+
 #main {
     position: relative;
-}
-
-.box {
-    position: fixed;
-    inset: 0;
-    display: flex;
-}
-
-.planel {
-    background-image: linear-gradient(90deg, #fff, #c5c7f2);
-    border: 1px solid #fff;
-    flex: 1;
 }
 
 .contt {
@@ -33,9 +25,7 @@
     height: 100%;
 }
 
-/* body{
-  background-image: url(images/IMG20230917121411_01-01\ \(1\).jpg);
-} */
+
 
 .navv,
 .content {
@@ -394,6 +384,7 @@
 
 .form-control {
     border-radius: 10px;
+
 }
 
 .form-check-input {
@@ -450,14 +441,7 @@
     gap: 10px;
     padding: 20px;
 }
-.form-check {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-}
 
-.form-check:hover {
-    background-color: #f1ebeb;
-}
 
 .option {
     display: flex;
@@ -594,3 +578,273 @@
 .reee {
     height: 80px;
 }
+
+.banner {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 15px;
+    text-align: center;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.search-container {
+    max-width: 500px;
+    margin: auto;
+    text-align: center;
+}
+
+        .promo-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 50px;
+        }
+
+        .promo-text {
+            max-width: 50%;
+        }
+
+        .promo-text h1 {
+            font-size: 70px;
+            font-weight: 700;
+        }
+
+        .promo-image {
+            position: relative;
+            max-width: 45%;
+        }
+
+        .message-box,
+        .message-box_1 {
+            position: absolute;
+            background: white;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+
+        }
+
+        .message-box-2 {
+            position: absolute;
+            background: white;
+            border-radius: 10px;
+
+            padding: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .message-box {
+            top: 10px;
+            left: -110px;
+
+        }
+
+        .message-box-2 {
+            top: 100px;
+
+            left: -110px;
+        }
+
+        .message-box_1 {
+            bottom: 16px;
+            right: 10px;
+        }
+
+        .verify-btn {
+            background: red;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .wrapper {
+            display: flex;
+        }
+
+        .wrapper .static-txt {
+            color: #fff;
+            font-size: 60px;
+            font-weight: 400;
+        }
+
+        .wrapper .dynamic-txts {
+            margin-left: 15px;
+            height: 90px;
+            line-height: 90px;
+            overflow: hidden;
+        }
+
+        .dynamic-txts li {
+            list-style: none;
+            color: #FC6D6D;
+            font-size: 60px;
+            font-weight: 500;
+            position: relative;
+            top: 0;
+            animation: slide 12s steps(4) infinite;
+        }
+
+        @keyframes slide {
+            100% {
+                top: -360px;
+            }
+        }
+
+        .dynamic-txts li span {
+            position: relative;
+            margin: 5px 0;
+            line-height: 90px;
+        }
+
+        .dynamic-txts li span::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            /* background: #343F4F; */
+            border-left: 2px solid #FC6D6D;
+            animation: typing 1s steps(10) infinite;
+        }
+
+        @keyframes typing {
+
+            100% {
+                left: 100%;
+                margin: 0 -35px 0 35px;
+            }
+        }
+
+        .contr {
+            background-color: #f8f9fa;
+        }
+
+        .hero-section {
+            padding: 50px;
+            text-align: center;
+            font-size: 25px;
+        }
+
+
+
+        .feature-list {
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        .feature-list i {
+            color: green;
+        }
+
+        .icon-1 {
+            border-color: #FC6D6D;
+        }
+
+        .testimonial-card {
+            background: white;
+            transform:translateX(-100%);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            flex-shrink: 0;
+            max-width: 400px;
+            text-align: left;
+        }
+
+        .quote-icon {
+            color: red;
+            font-size: 30px;
+        }
+
+        .testimonial-text {
+            font-size: 18px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .author {
+            margin-top: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            color: red;
+        }
+
+        .location {
+            font-size: 16px;
+            color: black;
+        }
+
+        #hero{
+            height: 400px;
+            overflow-x: hidden;
+            background-color: #D8FF04;
+        }
+   
+
+        
+    .container {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+  
+      .left {
+        flex: 2;
+        min-width: 300px;
+      }
+  
+      .right {
+        flex: 1;
+        min-width: 300px;
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+  
+      .card {
+        background: white;
+        padding: 16px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+      }
+  
+      .contractor-img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+      }
+  
+      .form-group {
+        margin-bottom: 15px;
+      }
+  
+      .form-group select,
+      .form-group input {
+        width: 100%;
+        padding: 8px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+      }
+  
+      .button {
+        background: #e00707;
+        color: white;
+        border: none;
+        padding: 10px 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+      }
+  
+      #map {
+        height: 200px;
+        width: 100%;
+        margin-top: 20px;
+        border-radius: 8px;
+      }

@@ -16,37 +16,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [FrontendController::class, 'home'])->name('index');
+
+
+//-------------------------------------help for business---------------------------
 Route::get('addbusiness', [FrontendController::class, 'addBusiness'])->name('addbusiness');
+Route::get('claim', [FrontendController::class, 'Claim'])->name('claim');
+Route::get('Explore', [FrontendController::class, 'explore'])->name('Explore');
+Route::get('login', [FrontendController::class, 'Login'])->name('login');
 
+//--------------------------------review and start project-----------------------
+Route::get('review', [FrontendController::class, 'Review'])->name('review');
+Route::get('project', [FrontendController::class, 'Project'])->name('project');
 
-// Route::get('/', function () {
-//     return view('index');
-// });
-
-// Route::get('addbusiness', function () {
-//     return view('addbusiness');
-// });
-
-// Route::get('claim', function () {
-//     return view('claim');
-// });
-
-// Route::get('contractor', function () {
-//     return view('contractor');
-// });
-
-// Route::get('Explore', function () {
-//     return view('Explore');
-// });
-
-// Route::get('project', function () {
-//     return view('project');
-// });
-
-// Route::get('takeout', function () {
-//     return view('takeout');
-// });
-
-// Route::get('review', function () {
-//     return view('review');
-// });
+//------------------------------resturant----------------------------------------
+Route::get('takeout', [FrontendController::class, 'Takeout'])->name('takeout');
+Route::get('contractor', [FrontendController::class, 'Contractor'])->name('contractor');

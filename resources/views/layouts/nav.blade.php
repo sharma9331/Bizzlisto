@@ -1,7 +1,7 @@
 <header>
     <nav class="navbar navbar-expand-lg  navbar-light  navv">
         <div class="container-fluid">
-            <a class="navbar-brand me-5 text-light" href="{{ url('frontend/index.html') }}">
+            <a class="navbar-brand me-5 text-light" href="{{ route('index') }}">
                 <i class="bi bi-person-raised-hand" style="font-size: 40px; color: red;">Nelp</i>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -23,23 +23,23 @@
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="{{ route('addbusiness') }}"><i
                                         class="bi bi-house-add-fill me-3"></i>Add a business</a></li>
-                            <li><a class="dropdown-item" href="{{ asset('frontend/claim.html') }}"><i
+                            <li><a class="dropdown-item" href="{{ route('claim') }}"><i
                                         class="bi bi-check2-circle me-3"></i>Claim your business</a></li>
-                            <li><a class="dropdown-item" href="{{ asset('frontend/login.html') }}"><i
+                            <li><a class="dropdown-item" href="{{ route('login') }}"><i
                                         class="bi bi-person-circle me-3"></i>Log in to Business Account</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="{{ asset('frontend/Explore.html') }}"><i
+                            <li><a class="dropdown-item" href="{{ route('Explore') }}"><i
                                         class="bi bi-search me-3"></i>Explore help for Business</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link me-2 active text-light navver" aria-current="page"
-                            href="{{ asset('frontend/review.html') }}">Write a Review</a>
+                            href="{{ route('review') }}">Write a Review</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link me-3  text-light navver" href="{{ asset('frontend/project.html') }}">Start a
+                        <a class="nav-link me-3  text-light navver" href="{{ route('project') }}">Start a
                             Project</a>
                     </li>
                     <li class="nav-item ">
@@ -92,12 +92,11 @@
                                                                     class="form-control form-control-lg bg-light fs-6"
                                                                     placeholder="Password" id="myInput2">
                                                             </div>
-                                                            <div
-                                                                class="input-group mb-5 d-flex justify-content-between">
+                                                            <div class="input-group mb-5 d-flex justify-content-between">
 
                                                                 <div class="form-check">
-                                                                    <input type="checkbox"
-                                                                        onclick="myFunction2()">Show Password
+                                                                    <input type="checkbox" class="form-check-input" id="formCheck">
+                                                                    <label for="formCheck" class="form-check-label text-secondary"><small>Business Owner</small></label>
                                                                 </div>
 
                                                                 <div class="forgot">
@@ -185,15 +184,11 @@
                                                                     class="form-control form-control-lg bg-light fs-6"
                                                                     placeholder="Email address">
                                                             </div>
-                                                            <div class="input-group mb-1">
+                                                            <div class="input-group mb-3">
                                                                 <input type="password"
                                                                     class="form-control form-control-lg bg-light fs-6"
                                                                     placeholder="Password" id="myInput">
 
-                                                            </div>
-
-                                                            <div class="input-group  mb-3">
-                                                                <input type="checkbox">Show Password
                                                             </div>
 
 
@@ -242,14 +237,14 @@
                         </a>
                         <ul class="dropdown-menu second-menu">
                             <div class="content_1 d-flex">
-                                <div class="sub-nav-col left me-4">
-                                    <a href="{{ asset('frontend/Takeout.html') }}"
+                                <div class="sub-nav-col left-1 me-4">
+                                    <a href="{{ route('takeout') }}"
                                         class="sub-nav-box  text-decoration-none text-dark" id="box-1">
 
                                         <h4 class="leftt"> <span class="leftt">🗑</span>Takeout</h4>
 
                                     </a>
-                                    <a href="{{ asset('frontend/Takeout.html') }}"
+                                    <a href=""
                                         class="sub-nav-box text-decoration-none text-dark" id="box-2">
 
                                         <h4 class="leftt"> <span class="leftt">🍔</span>burger</h4>
@@ -263,7 +258,7 @@
                                     </a>
 
                                 </div>
-                                <div class="sub-nav-col right">
+                                <div class="sub-nav-col right-1">
                                     <a href="#" class="sub-nav-box text-decoration-none text-dark"
                                         id="box-5">
 
@@ -295,8 +290,8 @@
                         </a>
                         <ul class="dropdown-menu second-menu">
                             <div class="content_1 d-flex">
-                                <div class="sub-nav-col left me-4">
-                                    <a href="{{ asset('frontend/contractor.html') }}"
+                                <div class="sub-nav-col left-1 me-4">
+                                    <a href="{{ route('contractor') }}"
                                         class="sub-nav-box  text-decoration-none text-dark" id="box-1">
 
                                         <h4 class="leftt"> <span class="leftt">🛠️</span>Contractors</h4>
@@ -316,7 +311,7 @@
                                     </a>
 
                                 </div>
-                                <div class="sub-nav-col right me-1">
+                                <div class="sub-nav-col right-1 me-1">
                                     <a href="#" class="sub-nav-box text-decoration-none text-dark"
                                         id="box-4">
 
@@ -347,7 +342,7 @@
                         </a>
                         <ul class="dropdown-menu second-menu">
                             <div class="content_1 d-flex">
-                                <div class="sub-nav-col left me-4">
+                                <div class="sub-nav-col left-1 me-4">
                                     <a href="#" class="sub-nav-box  text-decoration-none text-dark"
                                         id="box-1">
 
@@ -367,7 +362,7 @@
 
                                     </a>
                                 </div>
-                                <div class="sub-nav-col right">
+                                <div class="sub-nav-col right-1">
                                     <a href="#" class="sub-nav-box text-decoration-none text-dark"
                                         id="box-5">
 
@@ -400,7 +395,7 @@
                         </a>
                         <ul class="dropdown-menu second-menu">
                             <div class="content_1 d-flex">
-                                <div class="sub-nav-col left me-4">
+                                <div class="sub-nav-col left-1 me-4">
                                     <a href="#" class="sub-nav-box  text-decoration-none text-dark"
                                         id="box-1">
 
@@ -426,7 +421,7 @@
 
                                     </a>
                                 </div>
-                                <div class="sub-nav-col right">
+                                <div class="sub-nav-col right-1">
                                     <a href="#" class="sub-nav-box text-decoration-none text-dark"
                                         id="box-5">
 

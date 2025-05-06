@@ -93,22 +93,18 @@ function showSlider(type) {
 // Start the initial animation 
 resetTimeAnimation()
 
-// ====================password field show and hide===========================
 
-// Shery.mouseFollower();
-// Shery.makeMagnet(".magnet");
-
-// gsap.to(".fleftem", {
-//   scrollTrigger: {
-//     trigger: "#featureimg",
-//     pin: true,
-//     start: "top top",
-//     end: "bottom bottom",
-//     endTrigger: ".last",
-//     scrub: 1,
-//   },
-  
-// });
+    const map = L.map('map').setView([37.7749, -122.4194], 12);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+    const locations = [
+      { coords: [37.7749, -122.4194], popup: "San Francisco City Center" },
+      { coords: [37.7849, -122.4094], popup: "Elite Electricians HQ" }
+    ];
+    locations.forEach(loc => {
+      L.marker(loc.coords).addTo(map).bindPopup(loc.popup);
+    });
 
 
 

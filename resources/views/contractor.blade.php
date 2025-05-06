@@ -1,87 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-  <meta charset="UTF-8" />
-  <title>Contractor Listing</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="{{asset('frontend/style.css')}}">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-  <style>
-    body {
-      background: #f9f9f9;
-    }
-
-    .container {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .left {
-      flex: 2;
-      min-width: 300px;
-    }
-
-    .right {
-      flex: 1;
-      min-width: 300px;
-      background: white;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .card {
-      background: white;
-      padding: 16px;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      margin-bottom: 20px;
-    }
-
-    .contractor-img {
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-    }
-
-    .form-group {
-      margin-bottom: 15px;
-    }
-
-    .form-group select,
-    .form-group input {
-      width: 100%;
-      padding: 8px;
-      border-radius: 4px;
-      border: 1px solid #ccc;
-    }
-
-    .button {
-      background: #e00707;
-      color: white;
-      border: none;
-      padding: 10px 16px;
-      border-radius: 5px;
-      cursor: pointer;
-      width: 100%;
-    }
-
-    #map {
-      height: 200px;
-      width: 100%;
-      margin-top: 20px;
-      border-radius: 8px;
-    }
-  </style>
-</head>
-
-<body>
-
-@include('layouts.nav')
+@section('content')
   <!-- Header -->
   <div class="container my-4">
     <nav aria-label="breadcrumb">
@@ -172,24 +91,4 @@
     </div>
   </div>
 
-  @include('layouts.footer')
-
-  <!-- Leaflet Map Script -->
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-  <script>
-    const map = L.map('map').setView([37.7749, -122.4194], 12);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; OpenStreetMap contributors'
-    }).addTo(map);
-    const locations = [
-      { coords: [37.7749, -122.4194], popup: "San Francisco City Center" },
-      { coords: [37.7849, -122.4094], popup: "Elite Electricians HQ" }
-    ];
-    locations.forEach(loc => {
-      L.marker(loc.coords).addTo(map).bindPopup(loc.popup);
-    });
-  </script>
-
-</body>
-
-</html>
+  @endsection
