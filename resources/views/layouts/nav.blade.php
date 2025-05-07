@@ -2,7 +2,7 @@
     <nav class="navbar navbar-expand-lg  navbar-light  navv">
         <div class="container-fluid">
             <a class="navbar-brand me-5 text-light" href="{{ route('index') }}">
-                <i class="bi bi-person-raised-hand" style="font-size: 40px; color: red;">Nelp</i>
+                <i class="bi bi-person-raised-hand" style="font-size: 40px; color: red;">Bizzlisto</i>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
