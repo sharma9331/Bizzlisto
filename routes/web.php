@@ -31,3 +31,11 @@ Route::get('project', [FrontendController::class, 'Project'])->name('project');
 //------------------------------resturant----------------------------------------
 Route::get('takeout', [FrontendController::class, 'Takeout'])->name('takeout');
 Route::get('contractor', [FrontendController::class, 'Contractor'])->name('contractor');
+
+//=====================================sign and signup=============
+Route::get('sigin', [FrontendController::class, 'Sigin'])->name('sigin');
+Route::get('signup', [FrontendController::class, 'Signup'])->name('signup');
+
+
+//================================form data===============================
+Route::post('sigin', [FrontendController::class, 'insert'])->name('sigin');

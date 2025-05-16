@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-
 use Illuminate\Http\Request;
+use App\Models\Register;
 
 class FrontendController extends Controller
 {
@@ -52,5 +52,36 @@ class FrontendController extends Controller
     {
         return view('contractor');
     }
+
+    
+    public function Sigin()
+    {
+        return view('sigin');
+    }
+
+     public function Signup()
+    {
+        return view('signup');
+    }
+
+    public function insert(Request $request)
+{
+    // Validate the inputs
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|unique:registers,email',
+        'password' => 'required|string|min:6',
+    ]);
+    // Save the user
+    $register = new Register();
+    $register->name = $request->input('name');
+    $register->email = $request->input('email');
+    $register->password = bcrypt($request->input('password'));
+    $register->save();
+
+    return redirect('sigin')->with('success', 'Registration successful.');
+}
+
+
 
 }

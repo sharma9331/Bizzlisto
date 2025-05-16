@@ -1,116 +1,90 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-<div class="modal fade" id="eexampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header text-center">
-                  <h5 class="modal-title" id="exampleModalLabel">Sign in to help</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <form>
-                    <div class="mb-3">
-                      <label for="email" class="form-label">Email address</label>
-                      <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+@extends('layouts.app')
+
+@section('content')
+    <div class="modall " id="eexampleModal" tabindex="-1">
+        <div class="modal-content mt-5 mb-5">
+            <div class="modal-body">
+                @if ($errors->any())
+                    <script>
+                        let errorMessages = '';
+                        @foreach ($errors->all() as $error)
+                            errorMessages += '• {{ $error }}<br>';
+                        @endforeach
+
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Please fix the following fields:',
+                            html: errorMessages,
+                            confirmButtonColor: '#d33'
+                        });
+                    </script>
+                @elseif (session('success'))
+                    <script>
+                        Swal.fire({
+                            icon: 'success',
+                            title: '{{ session('success') }}',
+                            confirmButtonColor: '#28a745'
+                        });
+                    </script>
+                @endif
+
+                <form action="{{ route('sigin') }}" method="POST">
+                    @csrf
+                    <!----------------------- Main Container -------------------------->
+                    <div class="container d-flex justify-content-center align-items-center">
+                        <!----------------------- Login Container -------------------------->
+                        <div class="row border rounded-5 p-3 bg-white shadow box-area">
+                            <!--------------------------- Left Box ----------------------------->
+                            <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box"
+                                style="background: #103cbe;">
+                                <div class="featured-image mb-3">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/5721/5721113.png" alt=""
+                                        class="img-fluid" style="width: 250px;">
+                                </div>
+
+                                <small class="text-white text-wrap text-center"
+                                    style="width: 17rem;font-family: 'Courier New', Courier, monospace;">Join
+                                    experienced on this platform.</small>
+                            </div>
+                            <!-------------------- ------ Right Box ---------------------------->
+
+                            <div class="col-md-6 right-box">
+                                <div class="row align-items-center">
+                                    <div class="header-text mb-4">
+                                        <h2>Sign up</h2>
+
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <input type="text" name="name"
+                                            class="form-control form-control-lg bg-light fs-6" placeholder="User Name">
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <input type="text" name="email"
+                                            class="form-control form-control-lg bg-light fs-6" placeholder="Email address">
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <input type="password" name="password"
+                                            class="form-control form-control-lg bg-light fs-6" placeholder="Password"
+                                            id="myInput">
+
+                                    </div>
+
+
+                                    <div class="input-group mb-3">
+                                        <button class="btn btn-lg btn-primary w-100 fs-6">Sign
+                                            up</button>
+                                    </div>
+
+                                    <div class="row">
+                                        <small>Already have an account? <a href="{{ route('sigin') }}" class="fs-5">Log
+                                                in</a></small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="mb-3">
-                      <label for="password" class="form-label">Password</label>
-                      <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
-                    </div>
-                    <div class="mb-3 form-check">
-                      <input type="checkbox" class="form-check-input" id="rememberMe">
-                      <label class="form-check-label" for="rememberMe">Remember me</label>
-                    </div>
-                    <button type="submit" class="btn btn-primary w-100">Login</button>
-
-                    <div class="text-center mt-3">
-                      <a href="#" class="text-decoration-none">Forgot password?</a>
-                    </div>
-                    <div class="text-center mt-3">
-                      <a href="#" class="text-decoration-none text-dark" data-bs-toggle="modal" data-bs-target="#eexampleModal" data-bs-whatever="@mdo">New to Yelp? Sign up
-                      </a>
-                    </div>
-                </div>
-
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-danger w-100" data-bs-dismiss="modal">Close</button>
-
-                </div>
-              </div>
-            </div>
-          </div>
-
-<section class="vh-100" style="background-color: #eee;">
-  <div class="container h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-lg-12 col-xl-11">
-        <div class="card text-black" style="border-radius: 25px;">
-          <div class="card-body p-md-5">
-            <div class="row justify-content-center">
-              <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
-
-                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
-
-                <form class="mx-1 mx-md-4">
-
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                    <div class="form-outline flex-fill mb-0">
-                      <input type="text" id="form3Example1c" class="form-control" />
-                      <label class="form-label" for="form3Example1c">Your Name</label>
-                    </div>
-                  </div>
-
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
-                    <div class="form-outline flex-fill mb-0">
-                      <input type="email" id="form3Example3c" class="form-control" />
-                      <label class="form-label" for="form3Example3c">Your Email</label>
-                    </div>
-                  </div>
-
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
-                    <div class="form-outline flex-fill mb-0">
-                      <input type="password" id="form3Example4c" class="form-control" />
-                      <label class="form-label" for="form3Example4c">Password</label>
-                    </div>
-                  </div>
-
-
-                  <div class="form-check d-flex justify-content-center mb-5">
-                    <input
-                      class="form-check-input me-2"
-                      type="checkbox"
-                      value=""
-                      id="form2Example3c"
-                    />
-                    <label class="form-check-label" for="form2Example3">
-                      I agree all statements in <a href="#!">Terms of service</a>
-                    </label>
-                  </div>
-
-                  <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                    <button type="button" class="btn btn-primary btn-lg">Register</button>
-                  </div>
-
                 </form>
-
-              </div>
-              
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
-</section>
-
-</body>
-</html>
+@endsection

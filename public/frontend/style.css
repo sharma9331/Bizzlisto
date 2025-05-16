@@ -787,7 +787,7 @@
 
         
     .container {
-        display: flex;
+        /* display: flex; */
         gap: 20px;
         flex-wrap: wrap;
       }
@@ -848,3 +848,38 @@
         margin-top: 20px;
         border-radius: 8px;
       }
+
+
+
+       .search-box {
+            width: 700px;
+            margin: auto;
+        }
+
+        .review-section {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .review-img {
+            width: 150px;
+            margin-top: 20px;
+        }
+
+        .containr{
+            display: flex !important;
+            justify-content: space-between !important;
+        }
+
+
+        .swal2-popup.green-toast {
+        background-color: #28a745 !important; /* Bootstrap green */
+        color: white !important;
+        font-weight: bold;
+    }
+
+     .swal2-popup.red-toast {
+        background-color: #f40606 !important; /* Bootstrap green */
+        color: white !important;
+        font-weight: bold;
+    }

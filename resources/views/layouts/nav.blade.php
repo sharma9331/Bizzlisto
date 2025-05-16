@@ -42,7 +42,15 @@
                         <a class="nav-link me-3  text-light navver" href="{{ route('project') }}">Start a
                             Project</a>
                     </li>
-                    <li class="nav-item ">
+
+                     <li class="nav-item">
+                        <a class="nav-link me-3 text-decoration-none bg-primary rounded  text-light navver" href="{{ route('sigin') }}">Login</a>
+                    </li>
+
+                     <li class="nav-item">
+                        <a class="nav-link me-3 text-decoration-none bg-danger rounded  text-light navver" href="{{ route('signup') }}">Signup</a>
+                    </li>
+                    {{-- <li class="nav-item ">
                         <button type="button" class="btn btn-primary me-3" data-bs-toggle="modal"
                             data-bs-target="#exampleModal" data-bs-whatever="@mdo">Log In</button>
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -132,92 +140,8 @@
                                     </div>
                                 </div>
                             </div>
-                    </li>
-                    <li class="nav-item">
-                        <button type="button" class="btn btn-danger " data-bs-toggle="modal"
-                            data-bs-target="#eexampleModal" data-bs-whatever="@mdo">Sign up</button>
+                    </li> --}}
 
-                        <div class="modal fade" id="eexampleModal" tabindex="-1"
-                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-lg">
-                                <div class="modal-content">
-                                    <div class="modal-header text-center">
-                                        <h3 class="text-center">Sign Up to 🙋‍♂️help </h3>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-
-                                    </div>
-                                    <div class="modal-body">
-                                        <form action="">
-                                            <!----------------------- Main Container -------------------------->
-                                            <div class="container d-flex justify-content-center align-items-center">
-                                                <!----------------------- Login Container -------------------------->
-                                                <div class="row border rounded-5 p-3 bg-white shadow box-area">
-                                                    <!--------------------------- Left Box ----------------------------->
-                                                    <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box"
-                                                        style="background: #103cbe;">
-                                                        <div class="featured-image mb-3">
-                                                            <img src="https://cdn-icons-png.flaticon.com/512/5721/5721113.png"
-                                                                alt="" class="img-fluid"
-                                                                style="width: 250px;">
-                                                        </div>
-
-                                                        <small class="text-white text-wrap text-center"
-                                                            style="width: 17rem;font-family: 'Courier New', Courier, monospace;">Join
-                                                            experienced on this platform.</small>
-                                                    </div>
-                                                    <!-------------------- ------ Right Box ---------------------------->
-
-                                                    <div class="col-md-6 right-box">
-                                                        <div class="row align-items-center">
-                                                            <div class="header-text mb-4">
-                                                                <h2>Sign up</h2>
-
-                                                            </div>
-                                                            <div class="input-group mb-3">
-                                                                <input type="text"
-                                                                    class="form-control form-control-lg bg-light fs-6"
-                                                                    placeholder="User Name">
-                                                            </div>
-                                                            <div class="input-group mb-3">
-                                                                <input type="text"
-                                                                    class="form-control form-control-lg bg-light fs-6"
-                                                                    placeholder="Email address">
-                                                            </div>
-                                                            <div class="input-group mb-3">
-                                                                <input type="password"
-                                                                    class="form-control form-control-lg bg-light fs-6"
-                                                                    placeholder="Password" id="myInput">
-
-                                                            </div>
-
-
-                                                            <div class="input-group mb-3">
-                                                                <button class="btn btn-lg btn-primary w-100 fs-6">Sign
-                                                                    up</button>
-                                                            </div>
-
-                                                            <div class="row">
-                                                                <small>Already have an account? <a href="#"
-                                                                        class="fs-5" data-bs-toggle="modal"
-                                                                        data-bs-target="#exampleModal"
-                                                                        data-bs-whatever="@mdo">Log in</a></small>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-
-                                    <!-- <div class="modal-footer">
-                    <button type="button" class="btn btn-danger w-100" data-bs-dismiss="modal">Close</button>
-
-                  </div> -->
-                                </div>
-                            </div>
-                        </div>
-                    </li>
                 </ul>
             </div>
         </div>
