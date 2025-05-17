@@ -4,7 +4,8 @@
 <div class="modall" id="exampleModal" tabindex="-1">
         <div class="modal-content mt-5 mb-5">
             <div class="modal-body">
-                <form action="" method="post">
+                <form action="{{ route('sigin') }}" method="POST">
+                      @csrf
                     <!----------------------- Main Container -------------------------->
                     <div class="container d-flex justify-content-center align-items-center ">
                         <!----------------------- Login Container -------------------------->
@@ -32,17 +33,17 @@
                                         <p>We are happy to have you back.</p>
                                     </div>
                                     <div class="input-group mb-3">
-                                        <input type="text" class="form-control form-control-lg bg-light fs-6"
+                                        <input type="text" name="email" class="form-control form-control-lg bg-light fs-6"
                                             placeholder="Email address">
                                     </div>
                                     <div class="input-group mb-1">
-                                        <input type="password" class="form-control form-control-lg bg-light fs-6"
+                                        <input type="password" name="password" class="form-control form-control-lg bg-light fs-6"
                                             placeholder="Password" id="myInput2">
                                     </div>
                                     <div class="input-group mb-5 d-flex justify-content-between">
 
                                         <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="formCheck">
+                                            <input type="checkbox" name="business_mode" value="1" class="form-check-input" id="formCheck">
                                             <label for="formCheck"
                                                 class="form-check-label text-secondary"><small>Business
                                                     Owner</small></label>

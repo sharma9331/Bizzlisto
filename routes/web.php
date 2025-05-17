@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\FrontendController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 
 /*
@@ -39,3 +40,15 @@ Route::get('signup', [FrontendController::class, 'Signup'])->name('signup');
 
 //================================form data===============================
 Route::post('sigin', [FrontendController::class, 'insert'])->name('sigin');
+
+
+// Route::get('/login', [FrontendController::class, 'showLoginForm'])->name('login');
+Route::post('sigin', [FrontendController::class, 'sigin']);
+
+Route::get('dashboard', [FrontendController::class, 'dashboard'])->name('dashboard');
+Route::get('dashboard', [FrontendController::class, 'dashboard'])->name('dashboard');
+
+Auth::routes(['verify' => true]);
+Route::middleware(['auth', 'verified'])->get('dashboard', function () {
+    return view('businessdashboard.dashboard');
+})->name('dashboard');
