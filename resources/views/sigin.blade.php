@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="modall" id="exampleModal" tabindex="-1">
+    <div class="modall" id="exampleModal" tabindex="-1">
         <div class="modal-content mt-5 mb-5">
             <div class="modal-body">
-                <form action="{{ route('sigin') }}" method="POST">
-                      @csrf
+                <form action="{{ route('signincheck') }}" method="POST">
+                    @csrf
                     <!----------------------- Main Container -------------------------->
                     <div class="container d-flex justify-content-center align-items-center ">
                         <!----------------------- Login Container -------------------------->
@@ -32,32 +32,53 @@
                                         <h2>Hello,Again</h2>
                                         <p>We are happy to have you back.</p>
                                     </div>
+                                    {{-- @if ($errors->any())
+                                        @foreach ($errors->all() as $error)
+                                            <div class="text-light p-2 mb-3 bg-danger">{{ $error }}</div>
+                                        @endforeach
+                                    @endif --}}
                                     <div class="input-group mb-3">
-                                        <input type="text" name="email" class="form-control form-control-lg bg-light fs-6"
-                                            placeholder="Email address">
+                                        <input type="text" name="email"
+                                            class="form-control form-control-lg bg-light fs-6" placeholder="Email address"
+                                            value="{{ old('email') }}">
                                     </div>
+                                    @error('email')
+                                        <div class="alert alert-danger py-1 mb-3 d-flex align-items-center"
+                                            role="alert">
+                                            <i class="bi bi-exclamation-circle-fill"></i>
+                                            <small>{{ $message }}</small>
+                                        </div>
+                                    @enderror
+
                                     <div class="input-group mb-1">
-                                        <input type="password" name="password" class="form-control form-control-lg bg-light fs-6"
-                                            placeholder="Password" id="myInput2">
+                                        <input type="password" name="password"
+                                            class="form-control form-control-lg bg-light fs-6" placeholder="Password"
+                                            id="myInput2">
                                     </div>
+
+                                    @error('password')
+                                        <div class="alert alert-danger py-1  mb-3 d-flex align-items-center "
+                                            role="alert">
+                                            <i class="bi bi-exclamation-circle-fill"></i>
+                                            <small>{{ $message }}</small>
+                                        </div>
+                                    @enderror
+
+
+
+
+
                                     <div class="input-group mb-5 d-flex justify-content-between">
 
-                                        <div class="form-check">
-                                            <input type="checkbox" name="business_mode" value="1" class="form-check-input" id="formCheck">
-                                            <label for="formCheck"
-                                                class="form-check-label text-secondary"><small>Business
-                                                    Owner</small></label>
-                                        </div>
 
                                         <div class="forgot">
                                             <small><a href="#">Forgot
                                                     Password?</a></small>
-
                                         </div>
 
                                     </div>
                                     <div class="input-group mb-3">
-                                        <button type="button" class="btn btn-lg btn-primary w-100 fs-6">Login</button>
+                                        <button type="submit" class="btn btn-lg btn-primary w-100 fs-6">Login</button>
                                     </div>
                                     <div class="input-group mb-3">
                                         <button type="button" class="btn btn-lg btn-light w-100 fs-6"><img
@@ -66,8 +87,8 @@
                                                 In with Google</small></button>
                                     </div>
                                     <div class="row">
-                                        <small>Don't have account? <a href="{{ route('signup') }}" class="fs-5"
-                                                >Sign Up</a></small>
+                                        <small>Don't have account? <a href="{{ route('signup') }}" class="fs-5">Sign
+                                                Up</a></small>
                                     </div>
                                 </div>
                             </div>

@@ -18,7 +18,7 @@
   </div>
 
   <!-- Main Content -->
-  <div class="container">
+  <div class="container contter">
     <!-- Left Section -->
     <div class="left">
       <div class="card">

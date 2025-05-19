@@ -28,7 +28,7 @@
                     </script>
                 @endif
 
-                <form action="{{ route('sigin') }}" method="POST">
+                <form action="{{ route('insert') }}" method="POST">
                     @csrf
                     <!----------------------- Main Container -------------------------->
                     <div class="container d-flex justify-content-center align-items-center">

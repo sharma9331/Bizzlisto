@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
-use App\Models\Register;
+use App\Models\User;
 
 class FrontendController extends Controller
 {
@@ -71,11 +71,12 @@ class FrontendController extends Controller
         // Validate the inputs
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:registers,email',
+            'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:6',
         ]);
+        // return $request->all();
         // Save the user
-        $register = new Register();
+        $register = new User();
         $register->name = $request->input('name');
         $register->email = $request->input('email');
         $register->password = bcrypt($request->input('password'));
@@ -85,32 +86,27 @@ class FrontendController extends Controller
     }
 
 
-    public function dashboard(Request $request)
+    public function signinCheck(Request $request)
     {
         $credentials = $request->validate([
             'email' => 'required|email',
-            'password' => 'required',
+            'password' => 'required|confirmed',
         ]);
+        // return $request->all();
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-
-            // Check for 'business_mode' checkbox
-            if ($request->has('business_mode')) {
-                return redirect()->route('businessdashboard.dashboard');
-            }
-
             // Role-based redirect fallback
             return match (Auth::user()->role) {
                 'admin' => redirect()->route('admin.dashboard'),
                 'businessowner' => redirect()->route('businessdashboard.dashboard'),
                 'user' => redirect()->route('index'),
-               
             };
         }
 
         return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ])->onlyInput('email');
+            'email' => 'The Email field is must be valid.',
+             'password' => 'The password field is must be correct',
+        ])->onlyInput('email','password');
     }
 }

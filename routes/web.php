@@ -34,16 +34,18 @@ Route::get('takeout', [FrontendController::class, 'Takeout'])->name('takeout');
 Route::get('contractor', [FrontendController::class, 'Contractor'])->name('contractor');
 
 //=====================================sign and signup=============
-Route::get('sigin', [FrontendController::class, 'Sigin'])->name('sigin');
+
+
+
+
+// signup
 Route::get('signup', [FrontendController::class, 'Signup'])->name('signup');
+Route::post('signup/insert', [FrontendController::class, 'insert'])->name('insert');
 
 
-//================================form data===============================
-Route::post('sigin', [FrontendController::class, 'insert'])->name('sigin');
-
-
-// Route::get('/login', [FrontendController::class, 'showLoginForm'])->name('login');
-Route::post('sigin', [FrontendController::class, 'sigin']);
+// signin
+Route::get('sigin', [FrontendController::class, 'Sigin'])->name('sigin');
+Route::post('sigincheck', [FrontendController::class, 'signinCheck'])->name('signincheck');
 
 Route::get('dashboard', [FrontendController::class, 'dashboard'])->name('dashboard');
 Route::get('dashboard', [FrontendController::class, 'dashboard'])->name('dashboard');
