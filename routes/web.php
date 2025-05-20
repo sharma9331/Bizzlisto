@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\socilaitecontroller;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -33,22 +34,22 @@ Route::get('project', [FrontendController::class, 'Project'])->name('project');
 Route::get('takeout', [FrontendController::class, 'Takeout'])->name('takeout');
 Route::get('contractor', [FrontendController::class, 'Contractor'])->name('contractor');
 
-//=====================================sign and signup=============
-
-
-
-
 // signup
 Route::get('signup', [FrontendController::class, 'Signup'])->name('signup');
 Route::post('signup/insert', [FrontendController::class, 'insert'])->name('insert');
 
 
+// signin in google
+Route::get('index', [socilaitecontroller::class, 'Googlelogin'])->name('google.login');
+Route::get('index/google-callback', [socilaitecontroller::class, 'Googleauthentication'])->name('index.google-callback');
+
+
 // signin
 Route::get('sigin', [FrontendController::class, 'Sigin'])->name('sigin');
-Route::post('sigincheck', [FrontendController::class, 'signinCheck'])->name('signincheck');
+Route::post('sigincheck', [FrontendController::class, 'SigninCheck'])->name('signincheck');
 
-Route::get('dashboard', [FrontendController::class, 'dashboard'])->name('dashboard');
-Route::get('dashboard', [FrontendController::class, 'dashboard'])->name('dashboard');
+// Route::get('admin/dashboard', [FrontendController::class, 'Dashboard'])->name('dashboard');
+// Route::get('dashboard', [FrontendController::class, 'dashboard'])->name('dashboard');
 
 Auth::routes(['verify' => true]);
 Route::middleware(['auth', 'verified'])->get('dashboard', function () {

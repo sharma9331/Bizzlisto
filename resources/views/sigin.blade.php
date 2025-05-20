@@ -81,10 +81,12 @@
                                         <button type="submit" class="btn btn-lg btn-primary w-100 fs-6">Login</button>
                                     </div>
                                     <div class="input-group mb-3">
-                                        <button type="button" class="btn btn-lg btn-light w-100 fs-6"><img
-                                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw7JaI54p1i3v3WAoqEiQE1Jduquut71TkNSKSTNoixuv9DQQGdj61Ex_10nv6NM5wIhY&usqp=CAU"
-                                                style="width:20px" class="me-2"><small>Sign
-                                                In with Google</small></button>
+                                        <a href="{{ route('google.login') }}"
+                                            class="btn btn-lg btn-light w-100 fs-6 d-flex align-items-center justify-content-center text-dark text-decoration-none">
+                                            <img src="{{ asset('frontend/images/google.png') }}"
+                                                alt="Google" style="width:20px;" class="me-2">
+                                            <small>Sign In with Google</small>
+                                        </a>
                                     </div>
                                     <div class="row">
                                         <small>Don't have account? <a href="{{ route('signup') }}" class="fs-5">Sign

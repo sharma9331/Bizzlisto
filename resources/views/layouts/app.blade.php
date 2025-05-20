@@ -5,7 +5,6 @@
 
 <body>
 
-
     @include('layouts.nav')
 
     <div id="main">

@@ -19,9 +19,9 @@ body::-webkit-scrollbar {
    padding: 2px 14px;
 }
 
-#main {
+/* #main {
     position: relative;
-}
+} */
 
 .contt {
     margin-bottom: 60px;
@@ -307,9 +307,9 @@ body::-webkit-scrollbar {
 /* Responsive Design */
 
 @media screen and (max-width: 999px) {
-    header {
+    /* header {
         padding-left: 50px;
-    }
+    } */
 
     .list .item .content {
         left: 50px;

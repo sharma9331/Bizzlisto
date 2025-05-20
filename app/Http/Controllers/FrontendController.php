@@ -47,7 +47,7 @@ class FrontendController extends Controller
 
     public function Takeout()
     {
-        return view('resturant.takeout');
+        return view('resturant.Takeout');
     }
 
     public function Contractor()
@@ -86,11 +86,11 @@ class FrontendController extends Controller
     }
 
 
-    public function signinCheck(Request $request)
+    public function SigninCheck(Request $request)
     {
         $credentials = $request->validate([
             'email' => 'required|email',
-            'password' => 'required|confirmed',
+            'password' => 'required',
         ]);
         // return $request->all();
 
@@ -106,7 +106,7 @@ class FrontendController extends Controller
 
         return back()->withErrors([
             'email' => 'The Email field is must be valid.',
-             'password' => 'The password field is must be correct',
-        ])->onlyInput('email','password');
+           
+        ])->onlyInput('email');
     }
 }
