@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\socilaitecontroller;
+use App\Http\Controllers\Forgetpassword;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -55,3 +56,9 @@ Auth::routes(['verify' => true]);
 Route::middleware(['auth', 'verified'])->get('dashboard', function () {
     return view('businessdashboard.dashboard');
 })->name('dashboard');
+
+//forgetpassword
+Route::get('password/forget', [Forgetpassword::class, 'forgetpassword'])->name('password.forget');
+Route::post('password/forget', [Forgetpassword::class, 'forgetpasswordform'])->name('password.forget.form');
+Route::get('password/forget/{token}', [Forgetpassword::class, 'showlinkform'])->name('password.forget.link');
+Route::post('password/email/submit', [Forgetpassword::class, 'resetpassword'])->name('password.forget.link.submit');

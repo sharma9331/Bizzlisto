@@ -72,7 +72,7 @@
 
 
                                         <div class="forgot">
-                                            <small><a href="#">Forgot
+                                            <small><a href="{{ route('password.forget') }}">Forgot
                                                     Password?</a></small>
                                         </div>
 
