@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: white;
+    color: #222;
+  }
+  .page {
+    display: none;
+    max-width: 400px;
+    margin: 30px auto;
+    padding: 30px 15px;
+    background: white;
+    box-sizing: border-box;
+    position: relative;
+  }
+  .page.active {
+    display: block;
+  }
+  .modal-header,
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .modal-header h2,
+  .header h2,
+  .page h2 {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0;
+  }
+  .close,
+  .close-btn {
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    background: none;
+    color: #444;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+  }
+  hr {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 12px 0 20px;
+  }
+  label {
+    display: flex;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+    color: #444;
+    cursor: pointer;
+  }
+  label input[type="radio"] {
+    margin-right: 12px;
+    accent-color: #add8e6;
+    width: 18px;
+    height: 18px;
+  }
+  .buttons {
+    margin-top: 30px;
+    display: flex;
+    gap: 10px;
+  }
+  button {
+    padding: 10px 24px;
+    font-size: 14px;
+    border-radius: 4px;
+    border: 1.5px solid transparent;
+    cursor: pointer;
+    min-width: 90px;
+  }
+  button.back {
+    background: white;
+    border-color: #ccc;
+    color: #222;
+  }
+  button.skip,
+  button.next-btn {
+    background: #d50000;
+    border-color: #d50000;
+    color: white;
+  }
+  button.continue-btn {
+    background: #007bff;
+    border-color: #007bff;
+    color: white;
+  }
+  button.discard-btn {
+    background: #d50000;
+    border-color: #d50000;
+    color: white;
+  }
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  .overlay-content {
+    background: #f0f8ff;
+    padding: 30px;
+    border-radius: 8px;
+    max-width: 320px;
+    text-align: center;
+  }
+  .overlay-content p {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 24px;
+  }
+    </style>
+    <title>Energy Audit</title>
+</head>
+<body>
+    
+  <!-- Page 1: Home or Business -->
+  <div class="page active" id="homeBusinessPage">
+    <div class="header">
+      <h2>Is this a home or a business?</h2>
+      <span class="close" onclick="showOverlay()">&times;</span>
+    </div>
+    <hr />
+    <label><input type="radio" name="property" value="Business" /> Business</label><br>
+    <label><input type="radio" name="property" value="Residential" /> Residential</label>
+    <div class="buttons">
+      <button class="back" onclick="window.location.href='heating.html'">Back</button>
+      <button class="skip" onclick="goToEmergency()">Next</button>
+    </div>
+  </div>
+
+  <!-- Page 2: Emergency Question -->
+  <div class="page" id="emergencyPage">
+    <div class="modal-header">
+      <h2>Is this an emergency?</h2>
+      <button class="close-btn" onclick="showOverlay()">&times;</button>
+    </div>
+    <hr />
+    <label><input type="radio" name="emergency" value="Yes" /> Yes</label><br>
+    <label><input type="radio" name="emergency" value="No" /> No</label>
+    <div class="buttons">
+      <button class="back" onclick="goToHomeBusiness()">Back</button>
+      <button class="skip" onclick="showOverlay()">Skip</button>
+    </div>
+  </div>
+
+  <!-- Overlay -->
+  <div class="overlay" id="confirmOverlay">
+    <div class="overlay-content">
+      <p>Do you want to continue the request or discard it?</p>
+      <button class="continue-btn" onclick="hideOverlay()">Continue Request</button>
+      <button class="discard-btn" onclick="window.location.href='heating.html'">Discard</button>
+    </div>
+  </div>
+
+  <script>
+    function showPage(pageId) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById(pageId).classList.add('active');
+    }
+
+    function goToHomeBusiness() {
+      showPage('homeBusinessPage');
+    }
+
+    function goToEmergency() {
+      const selected = document.querySelector('input[name="property"]:checked');
+      if (!selected) {
+        alert("Please select either Business or Residential.");
+        return;
+      }
+      showPage('emergencyPage');
+    }
+
+    function showOverlay() {
+      document.getElementById('confirmOverlay').style.display = 'flex';
+    }
+
+    function hideOverlay() {
+      document.getElementById('confirmOverlay').style.display = 'none';
+    }
+  </script>
+</body>
+</html>

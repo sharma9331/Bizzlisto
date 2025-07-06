@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      body {
+    font-family: Arial, sans-serif;
+    background: #fff;
+    margin: 0;
+    padding: 20px;
+  }
+
+  .modal {
+    max-width: 500px;
+    margin: auto;
+  }
+
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .modal-header h2 {
+    font-size: 20px;
+  }
+
+  .close-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  form label {
+    display: block;
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+  }
+
+  input[type="checkbox"] {
+    margin-right: 10px;
+    accent-color: #00bcd4;
+  }
+
+  .modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 350px;
+    margin-top: 20px;
+  }
+
+  .modal-footer button {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+    font-size: 14px;
+  }
+
+  #backBtn {
+    background-color: white;
+    border: 1px solid #ccc;
+  }
+
+  #nextBtn {
+    background-color: #ccc;
+    color: white;
+  }
+
+  #nextBtn:enabled {
+    background-color: #ff0707;
+  }
+
+  /* Confirmation Dialog */
+  .dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .dialog-box {
+    background: white;
+    padding: 20px;
+    max-width: 400px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .dialog-buttons button {
+    margin: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  #continueBtn {
+    background-color: #007bff;
+    color: white;
+  }
+
+  #discardBtn {
+    background-color: #dc3545;
+    color: white;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+
+  .modal, .details-container {
+    width: 500px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    /* position: relative; */
+    display: none;
+    position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+
+  }
+  .modal.active, .details-container.active {
+    display: block;
+  }
+  .modal-header, .details-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .close-btn, .close {
+    font-size: 20px;
+    cursor: pointer;
+    border: none;
+    background: none;
+  }
+  .modal-footer, .button-group {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+  button {
+    padding: 10px 20px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  .back {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    color: #333;
+  }
+  .skip, .discard {
+    background-color: #d62828;
+    color: white;
+  }
+  .continue {
+    background-color: #01627A;
+    color: white;
+  }
+  textarea {
+    width: 100%;
+    height: 100px;
+    border: 2px solid #01627A;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    resize: none;
+  }
+  /* Confirmation Dialog */
+  .dialog {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+  }
+  .dialog-box {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  }
+
+    </style>
+    <title>Remodeling</title>
+</head>
+<body>
+<!-- Remodeling Form -->
+<div class="modal active" id="remodelModal">
+  <div class="modal-header">
+    <h2>What needs to be remodeled?</h2>
+    <button class="close-btn" id="closeBtn1">&times;</button>
+  </div>
+  <form id="remodelForm">
+    <label><input type="checkbox" name="remodel" value="Beam and lintels" /> Beam and lintels</label><br>
+    <label><input type="checkbox" name="remodel" value="Foundation" /> Foundation</label><br>
+    <label><input type="checkbox" name="remodel" value="Frame" /> Frame</label><br>
+    <label><input type="checkbox" name="remodel" value="Joists" /> Joists</label><br>
+    <label><input type="checkbox" name="remodel" value="Posts" /> Potss</label><br>
+    <label><input type="checkbox" name="remodel" value="Roof frame" /> Roof frame</label><br>
+    <label><input type="checkbox" name="remodel" value="Walls" /> Walls</label>
+    <label><input type="checkbox" name="remodel" value="Not sure" /> Not sure</label>
+  </form>
+  <div class="modal-footer">
+    <button id="backBtn1" type="button">Back</button>
+    <button id="nextBtn" type="button" disabled>Next</button>
+  </div>
+</div>
+
+<!-- Details Form -->
+<div class="details-container" id="detailsForm">
+  <div class="details-header">
+    <h2>Any details you'd like to add?</h2>
+    <button class="close" id="closeBtn2">&times;</button>
+  </div>
+  <textarea placeholder="Enter details here..."></textarea>
+  <div class="button-group">
+    <button class="back" id="backBtn2">Back</button>
+    <button class="skip" id="skipBtn">Submit</button>
+  </div>
+</div>
+
+<!-- Confirmation Dialog -->
+<div class="dialog" id="confirmDialog">
+  <div class="dialog-box">
+    <p>Do you want to continue your request or discard it?</p>
+    <button class="continue" id="continueBtn">Continue Request</button>
+    <button class="discard" id="discardBtn">Discard</button>
+  </div>
+</div>
+
+<script>
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  const nextBtn = document.getElementById("nextBtn");
+  const remodelModal = document.getElementById("remodelModal");
+  const detailsForm = document.getElementById("detailsForm");
+  const backBtn1 = document.getElementById("backBtn1");
+  const backBtn2 = document.getElementById("backBtn2");
+  const closeBtn1 = document.getElementById("closeBtn1");
+  const closeBtn2 = document.getElementById("closeBtn2");
+  const confirmDialog = document.getElementById("confirmDialog");
+  const continueBtn = document.getElementById("continueBtn");
+  const discardBtn = document.getElementById("discardBtn");
+  const skipBtn = document.getElementById("skipBtn");
+
+  checkboxes.forEach(cb => {
+    cb.addEventListener('change', () => {
+      const anyChecked = Array.from(checkboxes).some(box => box.checked);
+      nextBtn.disabled = !anyChecked;
+    });
+  });
+
+  nextBtn.addEventListener('click', () => {
+    remodelModal.classList.remove("active");
+    detailsForm.classList.add("active");
+  });
+
+  backBtn1.addEventListener('click', () => {
+    // Simulate redirect to contractors.html
+    window.location.href = "contractors.html";
+  });
+
+  backBtn2.addEventListener('click', () => {
+    detailsForm.classList.remove("active");
+    remodelModal.classList.add("active");
+  });
+
+  closeBtn1.addEventListener('click', () => {
+    confirmDialog.style.display = "flex";
+  });
+
+  closeBtn2.addEventListener('click', () => {
+    confirmDialog.style.display = "flex";
+  });
+
+  continueBtn.addEventListener('click', () => {
+    confirmDialog.style.display = "none";
+  });
+
+  discardBtn.addEventListener('click', () => {
+    window.location.href = "contractors.html";
+  });
+
+  skipBtn.addEventListener('click', () => {
+    alert("Details skipped. Submit request or move forward.");
+  });
+</script>
+</body>
+</html>

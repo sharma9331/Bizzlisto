@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      * {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fafafa;
+}
+
+.container {
+  padding: 30px 50px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  position: relative;
+}
+
+h2 {
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid #e0e0e0;
+  margin: 16px 0;
+}
+
+.option, .radio-option {
+  padding: 12px 0;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+}
+
+.option input, .radio-option input {
+  margin-right: 10px;
+}
+
+.buttons {
+  margin-top: 20px;
+  text-align: center;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.back-btn, .continue-btn, .skip-btn {
+  background-color: #f0f0f0;
+  color: #000;
+}
+
+.discard-btn, .submit-btn {
+  background-color: #e53935;
+  color: white;
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  max-width: 300px;
+  width: 90%;
+}
+
+.modal-buttons {
+  margin-top: 20px;
+}
+
+#buildingStories {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .container {
+    width: 90%;
+    padding: 20px 15px;
+  }
+}
+
+    /* Hide details form by default */
+    #detailsForm {
+      display: none;
+      max-width: 500px;
+      margin: 40px auto;
+      padding: 20px;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      background-color: #f9f9f9;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-family: Arial, sans-serif;
+    }
+
+    /* Modal styling */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .modal-content {
+      background: white;
+      padding: 20px;
+      border-radius: 5px;
+      max-width: 300px;
+      text-align: center;
+    }
+
+    /* Details header */
+    .details-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    .details-header h2 {
+      margin: 0;
+      font-size: 1.4rem;
+      color: #333;
+    }
+    .details-header button.close {
+      font-size: 1.8rem;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      color: #999;
+      transition: color 0.3s ease;
+    }
+    .details-header button.close:hover {
+      color: #555;
+    }
+
+    /* Textarea styling */
+    #detailsForm textarea {
+      width: 100%;
+      height: 120px;
+      padding: 10px;
+      font-size: 1rem;
+      border: 1.5px solid #ccc;
+      border-radius: 6px;
+      resize: vertical;
+      transition: border-color 0.3s ease;
+    }
+    #detailsForm textarea:focus {
+      outline: none;
+      border-color: #007BFF;
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    }
+
+    /* Button group */
+    .button-group {
+      margin-top: 15px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+    .button-group button {
+      padding: 8px 16px;
+      font-size: 1rem;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      min-width: 90px;
+    }
+    .button-group button.back {
+      background-color: #6c757d;
+      color: white;
+    }
+    .button-group button.back:hover {
+      background-color: #5a6268;
+    }
+    .button-group button.skip {
+      background-color: #28a745;
+      color: white;
+    }
+    .button-group button.skip:hover {
+      background-color: #218838;
+    }
+    </style>
+    <title>Additional to an existing structure</title>
+</head>
+<body>
+  <!-- Modal -->
+  <div class="modal" id="confirmationModal">
+    <div class="modal-content">
+      <p>Do you want to continue your request or discard it?</p>
+      <div class="modal-buttons">
+        <button class="continue-btn" onclick="hideModal()">Continue Request</button>
+        <button class="discard-btn" onclick="discardRequest()">Discard</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Close icon -->
+    <div class="close" onclick="showModal()">×</div>
+
+    <!-- Page 1: Addition Options -->
+    <div id="additionOptions">
+      <h2>What type of addition do you need?</h2>
+
+      <div class="option">
+        <input type="radio" name="addition" onclick="showBuildingStories()" /> Additional stories
+      </div>
+      <hr class="divider" />
+      <div class="option">
+        <input type="radio" name="addition" onclick="showDetailsForm()" /> Balcony
+      </div>
+      <hr class="divider" />
+      <div class="option">
+        <input type="radio" name="addition" onclick="showDetailsForm()" /> Deck
+      </div>
+      <hr class="divider" />
+      <div class="option">
+        <input type="radio" name="addition" onclick="showDetailsForm()" /> New rooms
+      </div>
+      <hr class="divider" />
+      <div class="option">
+        <input type="radio" name="addition" onclick="showDetailsForm()" /> Patio, porch, or terrace
+      </div>
+      <hr class="divider" />
+      <div class="option">
+        <input type="radio" name="addition" onclick="showDetailsForm()" /> Stairs
+      </div>
+      <hr class="divider" />
+      <div class="option">
+        <input type="radio" name="addition" onclick="showDetailsForm()" /> Other
+      </div>
+
+      <div class="buttons">
+        <button class="back-btn" onclick="discardRequest()">Back</button>
+        <button class="skip-btn" style="background-color: red;">Skip</button>
+      </div>
+    </div>
+
+    <!-- Page 2: Building Stories -->
+    <div id="buildingStories" style="display: none;">
+      <h2>How many stories do you need to add to your building?</h2>
+      <hr class="divider" />
+
+      <div class="radio-option">
+        <input type="radio" name="stories" value="1" id="story1" checked />
+        <label for="story1">1 story</label>
+      </div>
+      <hr class="divider" />
+      <div class="radio-option">
+        <input type="radio" name="stories" value="2" id="story2" />
+        <label for="story2">2 stories</label>
+      </div>
+      <hr class="divider" />
+      <div class="radio-option">
+        <input type="radio" name="stories" value="3" id="story3" />
+        <label for="story3">3 stories</label>
+      </div>
+      <hr class="divider" />
+      <div class="radio-option">
+        <input type="radio" name="stories" value="4+" id="story4" />
+        <label for="story4">4+ stories</label>
+      </div>
+
+      <div class="buttons">
+        <button class="back-btn" onclick="showAdditionOptions()">Back</button>
+        <button class="submit-btn" onclick="submitStories()">Submit</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Details Form -->
+  <div class="details-container" id="detailsForm">
+    <div class="details-header">
+      <h2>Any details you'd like to add?</h2>
+      <button class="close" id="closeBtn2">&times;</button>
+    </div>
+    <textarea placeholder="Enter details here..."></textarea>
+    <div class="button-group">
+      <button class="back" id="backBtn2">Back</button>
+      <button class="skip" id="skipBtn">Submit</button>
+    </div>
+  </div>
+
+  <script>
+    function showModal() {
+      document.getElementById('confirmationModal').style.display = 'flex';
+    }
+
+    function hideModal() {
+      document.getElementById('confirmationModal').style.display = 'none';
+    }
+
+    function discardRequest() {
+      window.location.href = 'contractors.html';
+    }
+
+    function showBuildingStories() {
+      document.getElementById('additionOptions').style.display = 'none';
+      document.getElementById('buildingStories').style.display = 'block';
+      document.getElementById('detailsForm').style.display = 'none';
+    }
+
+    function showAdditionOptions() {
+      document.getElementById('buildingStories').style.display = 'none';
+      document.getElementById('additionOptions').style.display = 'block';
+      document.getElementById('detailsForm').style.display = 'none';
+    }
+
+    function submitStories() {
+      const selected = document.querySelector('input[name="stories"]:checked');
+      alert("You selected: " + selected.value + " story/stories");
+      // You can add real form submission logic here
+    }
+
+    function showDetailsForm() {
+      document.getElementById('additionOptions').style.display = 'none';
+      document.getElementById('buildingStories').style.display = 'none';
+      document.getElementById('detailsForm').style.display = 'block';
+    }
+
+    function backToAdditionOptionsFromDetails() {
+      document.getElementById('detailsForm').style.display = 'none';
+      document.getElementById('additionOptions').style.display = 'block';
+    }
+
+    // Hook back button inside details form
+    document.getElementById('backBtn2').addEventListener('click', backToAdditionOptionsFromDetails);
+
+    // Also hook close button inside details form to hide details form and show addition options
+    document.getElementById('closeBtn2').addEventListener('click', backToAdditionOptionsFromDetails);
+  </script>
+
+</body>
+</body>
+</html>

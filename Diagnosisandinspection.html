@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: #f7f7f7;
+}
+.container {
+  max-width: 600px;
+  margin: auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+.hidden {
+  display: none;
+}
+.option {
+  margin: 10px 0;
+}
+.buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.next {
+  background-color: red;
+  color: white;
+}
+.back {
+  background-color: #6c757d;
+  color: white;
+}
+.close {
+  float: right;
+  font-size: 24px;
+  cursor: pointer;
+  color: #888;
+}
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+ul#vehicleList {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  max-height: 150px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+ul#vehicleList li {
+  padding: 8px 10px;
+  cursor: pointer;
+}
+ul#vehicleList li:hover {
+  background-color: #eee;
+}
+.modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+}
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+}
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+    </style>
+    <title>Diagnosis And Inspection</title>
+</head>
+<body>
+  <!-- Diagnosis Page -->
+  <div class="container" id="diagnosisPage">
+    <div class="close" onclick="openModal()">×</div>
+    <h2>What type of diagnosis do you need?</h2>
+    <hr />
+
+    <div class="option"><input type="radio" name="diagnosis" id="battery" /><label for="battery"> Battery testing</label></div><hr/>
+    <div class="option"><input type="radio" name="diagnosis" id="engine" /><label for="engine"> Check engine light</label></div><hr/>
+    <div class="option"><input type="radio" name="diagnosis" id="oil" /><label for="oil"> Engine oil light diagnosis</label></div><hr/>
+    <div class="option"><input type="radio" name="diagnosis" id="general" /><label for="general"> General diagnosis</label></div><hr/>
+    <div class="option"><input type="radio" name="diagnosis" id="noStart" /><label for="noStart"> No start diagnosis</label></div><hr/>
+    <div class="option"><input type="radio" name="diagnosis" id="noise" /><label for="noise"> Noise diagnosis</label></div><hr/>
+    <div class="option"><input type="radio" name="diagnosis" id="inspection" /><label for="inspection"> Pre-purchase inspection</label></div><hr/>
+    <div class="option"><input type="radio" name="diagnosis" id="smog" /><label for="smog"> Smog check</label></div><hr/>
+    <div class="option"><input type="radio" name="diagnosis" id="tirePressure" /><label for="tirePressure"> Tire pressure monitor lamp diagnosis</label></div><hr/>
+    <div class="option"><input type="radio" name="diagnosis" id="transLeak" /><label for="transLeak"> Transmission leak inspection</label></div><hr/>
+    <div class="option"><input type="radio" name="diagnosis" id="vibration" /><label for="vibration"> Vibration diagnosis</label></div><hr/>
+    <div class="option"><input type="radio" name="diagnosis" id="notSure" /><label for="notSure"> Not sure</label></div><hr/>
+    <div class="option"><input type="radio" name="diagnosis" id="other" /><label for="other"> Other</label></div><hr/>
+
+    <div class="buttons">
+      <button class="back" onclick="goBack()">Back</button>
+      <button class="next" onclick="handleNextDiagnosis()">Next</button>
+    </div>
+  </div>
+
+  <!-- Vehicle Page -->
+  <div class="container hidden" id="vehiclePage">
+    <div class="close" onclick="openModal()">×</div>
+    <h2>What make is your vehicle?</h2>
+    <hr />
+    <input type="text" id="vehicleMake" placeholder="Type or select your option..." autocomplete="off"/>
+    <ul id="vehicleList">
+      <li>Acura</li><li>Audi</li><li>BMW</li><li>Buick</li><li>Cadillac</li><li>Chevrolet</li>
+      <li>Chrysler</li><li>Dodge</li><li>Fiat</li><li>Ford</li><li>GMC</li><li>Honda</li>
+      <li>Hyundai</li><li>Infiniti</li><li>Jaguar</li><li>Jeep</li><li>Kia</li><li>Lexus</li>
+      <li>Lincoln</li><li>Mazda</li><li>Mercedes-Benz</li><li>Mitsubishi</li><li>Nissan</li>
+      <li>Ram</li><li>Subaru</li><li>Tesla</li><li>Toyota</li><li>Volkswagen</li><li>Other</li>
+    </ul>
+    <div class="buttons">
+      <button class="back" onclick="goToDiagnosisPage()">Back</button>
+      <button class="next" onclick="handleVehicleNext()">Next</button>
+    </div>
+  </div>
+
+  <!-- Details Page -->
+  <div class="container hidden" id="detailsPage">
+    <h2>What model and year is your vehicle?</h2>
+    <hr/>
+    <textarea id="detailsInput" rows="5" placeholder="Describe the issue in detail..." style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc;"></textarea>
+    <div class="buttons">
+      <button class="back" onclick="goToVehiclePage()">Back</button>
+      <button class="next" onclick="submitDetails()">Submit</button>
+    </div>
+  </div>
+
+  <!-- Exit Modal -->
+  <div id="exitModal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeModal()">×</span>
+      <h3>You're almost done</h3>
+      <p>Are you sure you want to leave now and lose your progress?</p>
+      <div class="modal-buttons">
+        <button class="next" onclick="closeModal()">Continue request</button>
+        <button class="back" onclick="goBackToMain()">Discard</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const vehicleInput = document.getElementById("vehicleMake");
+    const vehicleList = document.getElementById("vehicleList");
+    const listItems = vehicleList.getElementsByTagName("li");
+
+    function goBack() {
+      window.location.href = "autorepair.html";
+    }
+
+    function goToVehiclePage() {
+      document.getElementById("diagnosisPage").classList.add("hidden");
+      document.getElementById("vehiclePage").classList.remove("hidden");
+      document.getElementById("detailsPage").classList.add("hidden");
+    }
+
+    function goToDiagnosisPage() {
+      document.getElementById("vehiclePage").classList.add("hidden");
+      document.getElementById("diagnosisPage").classList.remove("hidden");
+    }
+
+    function handleNextDiagnosis() {
+      const radios = document.getElementsByName("diagnosis");
+      let selected = false;
+      for (const radio of radios) {
+        if (radio.checked) {
+          selected = true;
+          break;
+        }
+      }
+      if (!selected) {
+        alert("Please select a diagnosis option.");
+        return;
+      }
+      goToVehiclePage();
+    }
+
+    function handleVehicleNext() {
+      const input = vehicleInput.value.trim();
+      if (!input) {
+        alert("Please select or enter your vehicle make.");
+        return;
+      }
+      document.getElementById("vehiclePage").classList.add("hidden");
+      document.getElementById("detailsPage").classList.remove("hidden");
+    }
+
+    function submitDetails() {
+      const details = document.getElementById("detailsInput").value.trim();
+      if (!details) {
+        alert("Please describe your issue.");
+        return;
+      }
+      alert("Submitted! Thank you.");
+      // Add form submission or redirection logic here
+    }
+
+    function openModal() {
+      document.getElementById("exitModal").style.display = "flex";
+    }
+
+    function closeModal() {
+      document.getElementById("exitModal").style.display = "none";
+    }
+
+    function goBackToMain() {
+      window.location.href = "autorepair.html";
+    }
+
+    vehicleInput.addEventListener("input", function () {
+      const filter = this.value.toLowerCase();
+      let visibleCount = 0;
+      for (let li of listItems) {
+        if (li.textContent.toLowerCase().includes(filter)) {
+          li.style.display = "";
+          visibleCount++;
+        } else {
+          li.style.display = "none";
+        }
+      }
+      vehicleList.style.display = visibleCount === 0 ? "none" : "block";
+    });
+
+    for (let li of listItems) {
+      li.addEventListener("click", function () {
+        vehicleInput.value = this.textContent;
+        vehicleList.style.display = "none";
+      });
+    }
+
+    vehicleInput.addEventListener("focus", () => {
+      if (vehicleInput.value.trim() !== "") {
+        vehicleList.style.display = "block";
+      }
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!vehicleInput.contains(e.target) && !vehicleList.contains(e.target)) {
+        vehicleList.style.display = "none";
+      }
+    });
+  </script>
+</body>
+</html>
